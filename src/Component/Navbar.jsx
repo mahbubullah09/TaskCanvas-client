@@ -4,12 +4,16 @@ const Navbar = () => {
   const navlink = (
     <div className=" gap-4 flex flex-col lg:flex-row ">
       <ul className="py-1">
-        <a
-          href="#home"
-          className="relative text-black hover:text-[#011aff] active active:text-[#011aff]   w-fit block after:block after:content-[''] after:absolute after:h-[3px] after:bg-[#011aff] after:w-full after:scale-x-0 after:hover:scale-x-100 after:transition after:duration-300 after:origin-center"
-        >
-          Home
-        </a>
+        
+<NavLink
+  to="/"
+  className={({ isActive, isPending }) =>
+    isPending ? "pending" : isActive ? "text-[#011aff] after:block after:content-[''] after:absolute after:h-[3px] after:bg-[#011aff] after:w-full after:scale-x-0" : ""
+  }
+>
+  Home
+</NavLink>
+        
       </ul>
       <ul className="py-1">
         <a
