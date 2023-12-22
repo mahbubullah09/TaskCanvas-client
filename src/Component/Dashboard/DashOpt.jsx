@@ -40,22 +40,15 @@ const DashOpt = () => {
                 </p>
               </Link>
 
-              <Link to={"manageusers"}>
+              <Link to={"/addtask"}>
                 <p className="inline-block text-gray-600 hover:text-black my-4 w-full">
                   <span className="material-icons-outlined float-left pr-2">
                     group
                   </span>
-                  Manage Users
+                  Add Task
                 </p>
               </Link>
-              <Link to={"coupons"}>
-                <p className="inline-block text-gray-600 hover:text-black my-4 w-full">
-                  <span className="material-icons-outlined float-left pr-2">
-                    data_saver_on
-                  </span>
-                  Coupons
-                </p>
-              </Link>
+            
             </div>
 
             <div className="bg-orange-200 rounded-xl shadow-lg mb-6 px-6 py-4">
@@ -127,22 +120,15 @@ const DashOpt = () => {
                 </p>
               </Link>
 
-              <Link to={"manageusers"}>
+              <Link to={"/addtask"}>
                 <p className="inline-block text-gray-600 hover:text-black my-4 w-full">
                   <span className="material-icons-outlined float-left pr-2">
                     group
                   </span>
-                  Manage Users
+                  Add Task
                 </p>
               </Link>
-              <Link to={"coupons"}>
-                <p className="inline-block text-gray-600 hover:text-black my-4 w-full">
-                  <span className="material-icons-outlined float-left pr-2">
-                    data_saver_on
-                  </span>
-                  Coupons
-                </p>
-              </Link>
+              
             </div>
 
             <div className="bg-orange-200 rounded-xl shadow-lg mb-6 px-6 py-4">

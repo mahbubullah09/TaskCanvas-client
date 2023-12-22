@@ -14,9 +14,7 @@ const AddTask = () => {
 
 
   const { user } = useContext(AuthContext);
-  const OwnerName = user?.displayName;
-  const OwnerEmail = user?.email;
-  const OwnerImage = user?.photoURL;
+  
   const {
     register,
     handleSubmit,
@@ -25,22 +23,18 @@ const AddTask = () => {
   } = useForm();
   
 
-  const status = 'pending'
+ 
   const onSubmit = async (data) => {
-    const { name, photoURL, taskTitle, description } = data;
-    const productInfo = {
+    const {  taskTitle, priority, description } = data;
+    const taskInfo = {
       name,
-      image: photoURL,
+      priority: priority,
       title: taskTitle,
       description: description,
      
-      OwnerName,
-      email: OwnerEmail,
-      OwnerImage,
-      status,
       
     };
-    console.log(productInfo);
+    console.log(taskInfo);
     reset();
 
     fetch("https://tech-boat-server.vercel.app/products", {
@@ -48,7 +42,7 @@ const AddTask = () => {
         headers: {
           "content-type": "application/json",
         },
-        body: JSON.stringify(productInfo),
+        body: JSON.stringify(taskInfo),
       })
         .then((res) => res.json())
         .then((data) => {
