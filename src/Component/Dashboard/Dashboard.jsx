@@ -1,9 +1,19 @@
 import React from 'react';
+import DashOpt from './DashOpt';
+import AddTask from './AddTask';
 
 const Dashboard = () => {
     return (
-        <div>
-            <h2>dash</h2>
+        <div className='flex flex-col lg:flex-row'>
+            
+
+            <div>
+                <DashOpt/>
+            </div>
+
+            <div >
+                <AddTask/>
+            </div>
         </div>
     );
 };
