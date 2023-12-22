@@ -4,14 +4,14 @@ import AddTask from './AddTask';
 
 const Dashboard = () => {
     return (
-        <div className='flex flex-col lg:flex-row'>
+        <div className=' lg:grid grid-cols-3'>
             
 
-            <div>
+            <div className='lg:grid-cols-1'>
                 <DashOpt/>
             </div>
 
-            <div >
+            <div className='lg:grid-cols-2'> 
                 <AddTask/>
             </div>
         </div>

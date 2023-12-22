@@ -27,11 +27,11 @@ const AddTask = () => {
 
   const status = 'pending'
   const onSubmit = async (data) => {
-    const { name, photoURL, externalLink, description } = data;
+    const { name, photoURL, taskTitle, description } = data;
     const productInfo = {
       name,
       image: photoURL,
-      external_link: externalLink,
+      title: taskTitle,
       description: description,
      
       OwnerName,
@@ -74,93 +74,25 @@ const AddTask = () => {
         <title>Dashboard | AddProduct</title>
       </Helmet> */}
       <h3 className="text-4xl font-playfair font-bold text-center mt-8">
-        Add  New Product
+        Add  New Task
       </h3>
 
-      <div>
+      <div className="w-full">
         <div className="bg-white mx-10 px-5 py-4 rounded">
           <form onSubmit={handleSubmit(onSubmit)}>
-            <div className="flex gap-6 my-6">
-              
-              <div className="form-control w-full ">
-                <label className="label">
-                  <span className="label-text">Owner name <span className="text-red-600 text-lg">*</span></span>
-                </label>
-                <input
-                  type="text"
-                  defaultValue={OwnerName}
-                  disabled
-                  className="h-10 border p-2 w-full "
-                />
-              </div>
-             
-              <div className="form-control w-full ">
-                <label className="label">
-                  <span className="label-text">Owner Email <span className="text-red-600 text-lg">*</span></span>
-                </label>
-                <input
-                  type="text"
-                  defaultValue={OwnerEmail}
-                  disabled
-                  className="h-10 border p-2 w-full "
-                />
-              </div>
-            </div>
+            
            
-            <div className="form-control w-full ">
-              <label className="label">
-                <span className="label-text">Owner Image <span className="text-red-600 text-lg">*</span></span>
-              </label>
-              <input
-                type="text"
-                defaultValue={OwnerImage}
-                disabled
-                className="h-10 border p-2 w-full "
-              />
-            </div>
-            <div className="flex gap-6 my-6">
+          
+            
+            
               
               <div className="form-control w-full ">
                 <label className="label">
-                  <span className="label-text">Product name <span className="text-red-600 text-lg">*</span></span>
+                  <span className="label-text">Task Title <span className="text-red-600 text-lg">*</span></span>
                 </label>
                 <input
                   type="text"
-                  placeholder="Product name"
-                  {...register("name", { required: true })}
-                  className="h-10 border p-2 w-full "
-                />
-                {errors.name && (
-                  <span className="text-red-600">Name is required</span>
-                )}
-              </div>
-              
-              <div className="form-control w-full ">
-                <label className="label">
-                  <span className="label-text">Product Image <span className="text-red-600 text-lg">*</span></span>
-                </label>
-                <input
-                  type="text"
-                  placeholder="Product PhotoURL"
-                  {...register("photoURL", { required: true })}
-                  className="h-10 border p-2  w-full "
-                />
-                {errors.photoURL && (
-                  <span className="text-red-600">
-                    Product PhotoURL is required
-                  </span>
-                )}
-              </div>
-            </div>
-            <div className="flex gap-6 my-6">
-              
-              <div className="form-control w-full ">
-                <label className="label">
-                  <span className="label-text">External Link <span className="text-red-600 text-lg">*</span></span>
-                </label>
-                <input
-                  type="text"
-                  placeholder="External Link"
+                  placeholder="Task Title"
                   {...register("externalLink", {
                     required: true,
                   })}
@@ -168,14 +100,34 @@ const AddTask = () => {
                 />
                 {errors.externalLink && (
                   <span className="text-red-600">
-                    External Link is required
+                    Task Title is required
                   </span>
                 )}
               </div>
-            </div>
+
+              
+              <div className="form-control w-full ">
+                <label className="label">
+                  <span className="label-text">Priority <span className="text-red-600 text-lg">*</span></span>
+                </label>
+                <input
+                  type="text"
+                  placeholder="Priority"
+                  {...register("priority", {
+                    required: true,
+                  })}
+                  className="h-10 border p-2 w-full "
+                />
+                {errors.externalLink && (
+                  <span className="text-red-600">
+                    Priority is required
+                  </span>
+                )}
+              </div>
+            
             <div className="form-control">
               <label className="label">
-                <span className="label-text">Product Description <span className="text-red-600 text-lg">*</span></span>
+                <span className="label-text">Description <span className="text-red-600 text-lg">*</span></span>
               </label>
               <textarea
                 {...register("description", {
@@ -184,7 +136,7 @@ const AddTask = () => {
                   maxLength: 500,
                 })}
                 className="textarea textarea-bordered h-24"
-                placeholder="Product Description"
+                placeholder=" Description"
               ></textarea>
               {errors.description?.type === "required" && (
                 <p className="text-red-600">Password is required</p>
