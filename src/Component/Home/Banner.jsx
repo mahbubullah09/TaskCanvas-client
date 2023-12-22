@@ -16,7 +16,7 @@ const Banner = () => {
             <div className="flex gap-2 ">
 
 
-              <Link to={'dash'}>
+              <Link to={'dashboard'}>
               <button className="border rounded hover:bg-[#FF3811] hover:border-[#FF3811] border-white py-1 md:py-2 px-2 md:px-4 text-white">
                 {" "}
                 Let’s Explore

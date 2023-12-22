@@ -5,7 +5,7 @@ const Task = () => {
   const [tasks, setTask] = useState([]);
 
   useEffect(() => {
-    fetch("http://localhost:5000/tasks")
+    fetch("https://task-canvas-server.vercel.app/tasks")
       .then((response) => response.json())
 
       .then((data) => setTask(data));

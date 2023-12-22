@@ -37,7 +37,7 @@ const UpdateTask = () => {
     console.log(taskInfo);
     reset();
 
-    fetch(`http://localhost:5000/tasks/${id}`, {
+    fetch(`https://task-canvas-server.vercel.app/tasks/${id}`, {
         method: "PUT",
         headers: {
           "content-type": "application/json",

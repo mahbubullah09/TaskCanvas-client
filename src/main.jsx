@@ -48,7 +48,7 @@ const router = createBrowserRouter([
         element: <PrivateRoute>
           <UpdateTaskDash />,
         </PrivateRoute>,
-         loader: ({params}) => fetch(`http://localhost:5000/tasks/${params.id}`),
+         loader: ({params}) => fetch(`https://task-canvas-server.vercel.app/tasks/${params.id}`),
 
       },
       {
