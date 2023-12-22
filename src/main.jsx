@@ -14,6 +14,7 @@ import AuthProvider from './Component/Provider/authProvider';
 import Login from './Component/registration/Login';
 import SingUp from './Component/registration/SingUp';
 import PrivateRoute from './Component/PrivateRoute/PrivateRoute';
+import AddTaskDash from './Component/Dashboard/AddTaskDash';
 
 
 const router = createBrowserRouter([
@@ -27,9 +28,16 @@ const router = createBrowserRouter([
         element: <Home />,
       },
       {
-        path: "/dash",
+        path: "/dashboard",
         element: <PrivateRoute>
           <Dashboard />
+        </PrivateRoute>,
+
+      },
+      {
+        path: "/addtask",
+        element: <PrivateRoute>
+          <AddTaskDash />
         </PrivateRoute>,
 
       },

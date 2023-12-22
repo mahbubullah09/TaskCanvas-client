@@ -4,63 +4,52 @@
 import { useContext, useState } from "react";
 import { useForm } from "react-hook-form";
 
-
-
 import Swal from "sweetalert2";
 
 import { AuthContext } from "../Provider/authProvider";
 
 const AddTask = () => {
-
-
   const { user } = useContext(AuthContext);
-  
+
   const {
     register,
     handleSubmit,
     formState: { errors },
     reset,
   } = useForm();
-  
 
- 
   const onSubmit = async (data) => {
-    const {  taskTitle, priority, description } = data;
+    const { taskTitle, priority, description } = data;
     const taskInfo = {
-      name,
-      priority: priority,
       title: taskTitle,
+      priority: priority,
+
       description: description,
-     
-      
     };
     console.log(taskInfo);
     reset();
 
-    fetch("https://tech-boat-server.vercel.app/products", {
-        method: "POST",
-        headers: {
-          "content-type": "application/json",
-        },
-        body: JSON.stringify(taskInfo),
-      })
-        .then((res) => res.json())
-        .then((data) => {
-          console.log(data);
+    fetch("http://localhost:5000/tasks", {
+      method: "POST",
+      headers: {
+        "content-type": "application/json",
+      },
+      body: JSON.stringify(taskInfo),
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        console.log(data);
 
-          if (data.insertedId) {
-            Swal.fire({
-              position: "center",
-              icon: "success",
-              title: "Products added successfully",
-              showConfirmButton: false,
-              timer: 1500,
-            });
-          }
-        });
-
-
-
+        if (data.insertedId) {
+          Swal.fire({
+            position: "center",
+            icon: "success",
+            title: "Task added successfully",
+            showConfirmButton: false,
+            timer: 1500,
+          });
+        }
+      });
   };
   return (
     <div>
@@ -68,60 +57,55 @@ const AddTask = () => {
         <title>Dashboard | AddProduct</title>
       </Helmet> */}
       <h3 className="text-4xl font-playfair font-bold text-center mt-8">
-        Add  New Task
+        Add New Task
       </h3>
 
       <div className="w-full">
         <div className="bg-white mx-10 px-5 py-4 rounded">
           <form onSubmit={handleSubmit(onSubmit)}>
-            
-           
-          
-            
-            
-              
-              <div className="form-control w-full ">
-                <label className="label">
-                  <span className="label-text">Task Title <span className="text-red-600 text-lg">*</span></span>
-                </label>
-                <input
-                  type="text"
-                  placeholder="Task Title"
-                  {...register("externalLink", {
-                    required: true,
-                  })}
-                  className="h-10 border p-2 w-full "
-                />
-                {errors.externalLink && (
-                  <span className="text-red-600">
-                    Task Title is required
-                  </span>
-                )}
-              </div>
+            <div className="form-control w-full ">
+              <label className="label">
+                <span className="label-text">
+                  Task Title <span className="text-red-600 text-lg">*</span>
+                </span>
+              </label>
+              <input
+                type="text"
+                placeholder="Task Title"
+                {...register("taskTitle", {
+                  required: true,
+                })}
+                className="h-10 border p-2 w-full "
+              />
+              {errors.externalLink && (
+                <span className="text-red-600">Task Title is required</span>
+              )}
+            </div>
 
-              
-              <div className="form-control w-full ">
-                <label className="label">
-                  <span className="label-text">Priority <span className="text-red-600 text-lg">*</span></span>
-                </label>
-                <input
-                  type="text"
-                  placeholder="Priority"
-                  {...register("priority", {
-                    required: true,
-                  })}
-                  className="h-10 border p-2 w-full "
-                />
-                {errors.externalLink && (
-                  <span className="text-red-600">
-                    Priority is required
-                  </span>
-                )}
-              </div>
-            
+            <div className="form-control w-full ">
+              <label className="label">
+                <span className="label-text">
+                  Priority <span className="text-red-600 text-lg">*</span>
+                </span>
+              </label>
+              <input
+                type="text"
+                placeholder="Priority"
+                {...register("priority", {
+                  required: true,
+                })}
+                className="h-10 border p-2 w-full "
+              />
+              {errors.externalLink && (
+                <span className="text-red-600">Priority is required</span>
+              )}
+            </div>
+
             <div className="form-control">
               <label className="label">
-                <span className="label-text">Description <span className="text-red-600 text-lg">*</span></span>
+                <span className="label-text">
+                  Description <span className="text-red-600 text-lg">*</span>
+                </span>
               </label>
               <textarea
                 {...register("description", {
@@ -149,7 +133,7 @@ const AddTask = () => {
 
             <div className="flex justify-center mt-6">
               <button className=" rounded-lg px-4 py-2 bg-[#0D6EFD] text-white text-lg">
-                Submit 
+                Submit
               </button>
             </div>
           </form>

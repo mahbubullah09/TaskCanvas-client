@@ -1,18 +1,17 @@
-import React from 'react';
 import DashOpt from './DashOpt';
-import AddTask from './AddTask';
+import Task from './Task';
 
 const Dashboard = () => {
     return (
-        <div className=' lg:grid grid-cols-3'>
+        <div className='flex flex-col lg:flex-row max-w-6xl'>
             
 
-            <div className='lg:grid-cols-1'>
+            <div >
                 <DashOpt/>
             </div>
 
-            <div className='lg:grid-cols-2'> 
-                <AddTask/>
+            <div className='flex-1'> 
+                <Task/>
             </div>
         </div>
     );
