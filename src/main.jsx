@@ -13,6 +13,7 @@ import Dashboard from './Component/Dashboard/Dashboard';
 import AuthProvider from './Component/Provider/authProvider';
 import Login from './Component/registration/Login';
 import SingUp from './Component/registration/SingUp';
+import PrivateRoute from './Component/PrivateRoute/PrivateRoute';
 
 
 const router = createBrowserRouter([
@@ -27,7 +28,10 @@ const router = createBrowserRouter([
       },
       {
         path: "/dash",
-        element: <Dashboard />,
+        element: <PrivateRoute>
+          <Dashboard />
+        </PrivateRoute>,
+
       },
       {
         path: "/login",
