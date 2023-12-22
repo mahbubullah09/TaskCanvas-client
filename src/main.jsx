@@ -9,6 +9,10 @@ import {
 } from "react-router-dom";
 import MainLayout from './Layout/MainLayout';
 import Home from './Component/Home/Home';
+import Dashboard from './Component/Dashboard/Dashboard';
+import AuthProvider from './Component/Provider/authProvider';
+import Login from './Component/registration/Login';
+import SingUp from './Component/registration/SingUp';
 
 
 const router = createBrowserRouter([
@@ -21,12 +25,26 @@ const router = createBrowserRouter([
         path: "/",
         element: <Home />,
       },
+      {
+        path: "/dash",
+        element: <Dashboard />,
+      },
+      {
+        path: "/login",
+        element: <Login />,
+      },
+      {
+        path: "/singup",
+        element: <SingUp />,
+      },
     ],
   },
 ]);
 
 ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>
-    <RouterProvider router={router} />
+ <AuthProvider>
+ <RouterProvider router={router} />
+ </AuthProvider>
   </React.StrictMode>
 );

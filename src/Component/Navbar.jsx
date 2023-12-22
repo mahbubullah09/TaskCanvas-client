@@ -1,46 +1,52 @@
-import { NavLink } from "react-router-dom";
+import { useContext } from "react";
+import { Link, NavLink } from "react-router-dom";
+import { AuthContext } from "./Provider/authProvider";
 
 const Navbar = () => {
+  const { user, logOut } = useContext(AuthContext);
+
   const navlink = (
     <div className=" gap-4 flex flex-col lg:flex-row ">
       <ul className="py-1">
-        
-<NavLink
-  to="/"
-  className={({ isActive, isPending }) =>
-    isPending ? "pending" : isActive ? "text-[#011aff] after:block after:content-[''] after:absolute after:h-[3px] after:bg-[#011aff] after:w-full after:scale-x-0" : ""
-  }
->
-  Home
-</NavLink>
-        
+        <NavLink
+          to="/"
+          className={({ isActive, isPending }) =>
+            isPending
+              ? "pending"
+              : isActive
+              ? "text-[#011aff] after:block after:content-[''] after:absolute after:h-[3px] after:bg-[#011aff] after:w-full after:scale-x-0"
+              : ""
+          }
+        >
+          Home
+        </NavLink>
       </ul>
       <ul className="py-1">
         <a
           href="#about"
           className="relative text-black hover:text-[#011aff]   w-fit block after:block after:content-[''] after:absolute after:h-[3px] after:bg-[#011aff] after:w-full after:scale-x-0 after:hover:scale-x-100 after:transition after:duration-300 after:origin-center"
         >
-         About
+          About
         </a>
       </ul>
 
-
       <ul className="py-1">
-      <a
+        <a
           href="#skill"
           className="relative text-black hover:text-[#011aff]   w-fit block after:block after:content-[''] after:absolute after:h-[3px] after:bg-[#011aff] after:w-full after:scale-x-0 after:hover:scale-x-100 after:transition after:duration-300 after:origin-center"
         >
-            Contact us</a>
+          Contact us
+        </a>
       </ul>
 
       <ul className="py-1">
-      <a
+        <a
           href="#project"
           className="relative text-black hover:text-[#011aff]   w-fit block after:block after:content-[''] after:absolute after:h-[3px] after:bg-[#011aff] after:w-full after:scale-x-0 after:hover:scale-x-100 after:transition after:duration-300 after:origin-center"
         >
-            Dashboard</a>
+          Dashboard
+        </a>
       </ul>
-      
     </div>
   );
   return (
@@ -48,15 +54,37 @@ const Navbar = () => {
       <div className="bg-white z-50">
         <div className="navbar Montserrat font-semibold  max-w-6xl mx-auto   ">
           <div className="navbar-start ">
-           <a href="#home">
-           <h2 className="bg-[#272770]  text-white rounded-full px-4 py-1 text-center "> Task<span className="text-[#ffd900] font-bold text-xl" >Canvas</span></h2>
-           </a>
+            <a href="#home">
+              <h2 className="bg-[#272770]  text-white rounded-full px-4 py-1 text-center ">
+                {" "}
+                Task
+                <span className="text-[#ffd900] font-bold text-xl">Canvas</span>
+              </h2>
+            </a>
           </div>
           <div className="navbar-center hidden lg:flex   rounded-full">
             <ul className="menu menu-horizontal px-4 "></ul>
           </div>
           <div className="navbar-end ">
-            <div className="hidden lg:flex">{navlink}</div>
+            <div className="hidden lg:flex">
+              {navlink}{" "}
+              <div className="mx-4">
+                {user?.email ? (
+                  <div>
+                    <button
+                      className=" text-base font-semibold hover:bg-[#9dd51f] hover:text-black bg-[#28844b] text-white  py-2 px-4 rounded-md hover:bg-blue-gray-800"
+                      onClick={logOut}
+                    >
+                      Logout
+                    </button>
+                  </div>
+                ) : (
+                  <div className=" text-base font-semibold hover:bg-[#9dd51f] hover:text-black bg-[#28844b] text-white  py-2 px-4 rounded-md hover:bg-blue-gray-800 ">
+                    <Link to={"login"}>Log In</Link>
+                  </div>
+                )}
+              </div>
+            </div>
 
             <div className="dropdown dropdown-end">
               <label tabIndex={0} className="btn btn-ghost lg:hidden">
@@ -75,7 +103,10 @@ const Navbar = () => {
                   />
                 </svg>
               </label>
-              <ul tabIndex="0" className="menu  dropdown-content z-10 shadow bg-base-100 rounded-box w-52 ms-auto">
+              <ul
+                tabIndex="0"
+                className="menu  dropdown-content z-10 shadow bg-base-100 rounded-box w-52 ms-auto"
+              >
                 {navlink}
               </ul>
             </div>
