@@ -15,6 +15,8 @@ import Login from './Component/registration/Login';
 import SingUp from './Component/registration/SingUp';
 import PrivateRoute from './Component/PrivateRoute/PrivateRoute';
 import AddTaskDash from './Component/Dashboard/AddTaskDash';
+import UpdateTask from './Component/Dashboard/UpdateTask';
+import UpdateTaskDash from './Component/Dashboard/UpdateTaskDash';
 
 
 const router = createBrowserRouter([
@@ -39,6 +41,14 @@ const router = createBrowserRouter([
         element: <PrivateRoute>
           <AddTaskDash />
         </PrivateRoute>,
+
+      },
+      {
+        path: "/taskupdate/:id",
+        element: <PrivateRoute>
+          <UpdateTaskDash />,
+        </PrivateRoute>,
+         loader: ({params}) => fetch(`http://localhost:5000/tasks/${params.id}`),
 
       },
       {

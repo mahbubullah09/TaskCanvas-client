@@ -7,8 +7,16 @@ import { useForm } from "react-hook-form";
 import Swal from "sweetalert2";
 
 import { AuthContext } from "../Provider/authProvider";
+import { useLoaderData, useParams } from "react-router-dom";
 
-const AddTask = () => {
+const UpdateTask = () => {
+
+    const {id} = useParams()
+    console.log(id);
+
+    const task = useLoaderData()
+    console.log(task);
+ 
   const { user } = useContext(AuthContext);
 
   const {
@@ -30,26 +38,24 @@ const AddTask = () => {
     reset();
 
     fetch(`http://localhost:5000/tasks/${id}`, {
-      method: "POST",
-      headers: {
-        "content-type": "application/json",
-      },
-      body: JSON.stringify(taskInfo),
-    })
-      .then((res) => res.json())
-      .then((data) => {
-        console.log(data);
+        method: "PUT",
+        headers: {
+          "content-type": "application/json",
+        },
+        body: JSON.stringify(taskInfo),
+      })
+        .then((res) => res.json())
+        .then((data) => {
+          console.log(data);
 
-        if (data.insertedId) {
-          Swal.fire({
-            position: "center",
-            icon: "success",
-            title: "Task added successfully",
-            showConfirmButton: false,
-            timer: 1500,
-          });
-        }
-      });
+          if (data.modifiedCount > 0) {
+            Swal.fire({
+              icon: "success",
+              title: "Congaratulations",
+              text: "Task Updated succesfully!",
+            });
+          }
+        });
   };
   return (
     <div>
@@ -57,7 +63,7 @@ const AddTask = () => {
         <title>Dashboard | AddProduct</title>
       </Helmet> */}
       <h3 className="text-4xl font-playfair font-bold text-center mt-8">
-        Add New Task
+        Update Task
       </h3>
 
       <div className="w-full">
@@ -72,6 +78,7 @@ const AddTask = () => {
               <input
                 type="text"
                 placeholder="Task Title"
+                defaultValue={task?.title}
                 {...register("taskTitle", {
                   required: true,
                 })}
@@ -143,4 +150,4 @@ const AddTask = () => {
   );
 };
 
-export default AddTask;
+export default UpdateTask;

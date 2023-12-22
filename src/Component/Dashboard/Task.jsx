@@ -1,38 +1,35 @@
-import { useEffect, useState } from 'react';
-import TaskCard from './TaskCard';
-
+import { useEffect, useState } from "react";
+import TaskCard from "./TaskCard";
 
 const Task = () => {
-    const [tasks, setTask] = useState([]);
+  const [tasks, setTask] = useState([]);
 
-    useEffect(() => {
-      fetch("http://localhost:5000/tasks")
-        .then((response) => response.json())
-  
-        .then((data) => setTask(data));
-    }, []);
-    console.log(tasks);
+  useEffect(() => {
+    fetch("http://localhost:5000/tasks")
+      .then((response) => response.json())
 
-    return (
-        <div className='flex gap-6 justify-around mx-10 '>
-            <div className='bg-slate-800 text-white w-1/3 min-h-20 p-2 '>
-                <h2>To do</h2>
+      .then((data) => setTask(data));
+  }, []);
+  console.log(tasks);
 
-                {
-                    tasks?.map((tasks, idx) => <TaskCard key={idx} tasks={tasks}/>)
-                }
-
-            </div>
-            <div className='bg-slate-800 text-white w-1/3 '>
-                <h2>To do</h2>
-
-            </div>
-            <div className='bg-slate-800 text-white w-1/3 '>
-                <h2>To do</h2>
-
-            </div>
+  return (
+    <div className="flex gap-6 justify-around mx-10 ">
+      <div className="bg-slate-800 text-white w-1/3 min-h-20 p-2 ">
+        <h2>To do</h2>
+        <div className="">
+          {tasks?.map((tasks, idx) => (
+            <TaskCard key={idx} tasks={tasks} />
+          ))}
         </div>
-    );
+      </div>
+      <div className="bg-slate-800 text-white w-1/3 ">
+        <h2>To do</h2>
+      </div>
+      <div className="bg-slate-800 text-white w-1/3 ">
+        <h2>To do</h2>
+      </div>
+    </div>
+  );
 };
 
 export default Task;
